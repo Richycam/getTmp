@@ -1,5 +1,6 @@
-import shutil
+import time 
 import os
+
 print("""
 ░██████╗░███████╗████████╗████████╗███╗░░░███╗██████╗░  
 ██╔════╝░██╔════╝╚══██╔══╝╚══██╔══╝████╗░████║██╔══██╗  
@@ -17,19 +18,25 @@ print("""
 
 
 
+print("\n will check if you have perms to steal temp data ;) ")
+
 os.startfile("Perms.bat")
 
-slash = "\\"
-startdir = "C:"
-usrs = "Users"
-usr = input(str("Username? \n"))
-appdat = "\AppData\Local\%Temp%"
-path_to_dir = startdir+usrs+slash+usr+appdat 
-print(path_to_dir)
-path_to_dst = startdir+slash + usr +slash+ "Desktop"
-print("file is located at" , path_to_dst)
-
-
-shutil.copy2(path_to_dir,path_to_dst)
+i = True
+while i == True:
+    import tempfile
+    tmp = tempfile.mkdtemp()
+    slash = "\\"
+    startdir = "C:"
+    usrs = "Users"
+    usr = input(str("Username? \n"))
+    print(tmp)
+    path_to_dst = startdir+slash + usr +slash+ "Desktop"+slash+"gottemp"
+    print("file is located at" , path_to_dst)
+    import subprocess
+    subprocess.run(["MOVE",tmp, path_to_dst]) 
+    if i == False:
+        print("Get Higher Privlages")
+        time.sleep(10)
 
 ##THIS IS INCOMPLETE
